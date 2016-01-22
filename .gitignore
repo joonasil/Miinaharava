@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/minesweeper/nbproject/private/
+/minesweeper/build/
+/minesweeperTest/target/
