@@ -9,6 +9,10 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 
 **Pelaajan Toiminnot:**  
 - Pelaa miinaharavaa
+ * Käännä ruutu
+ * merkkaa ruutu
+ * uusi peli
+ * resetoi peli
 - Lataa Peli
 - Tallenna Peli
 - Katso huipputuloksia
