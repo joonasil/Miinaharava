@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package fi.joonasil.minesweeper.logic;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Joonas
  */
-public class minesweeperTest {
+public class PlayerTest {
     
-    public minesweeperTest() {
+    public PlayerTest() {
     }
     
     @BeforeClass
