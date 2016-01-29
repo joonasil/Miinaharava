@@ -4,59 +4,35 @@ package fi.joonasil.minesweeper.logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 public class TestClass {
     public static void main(String[] args){
-        ArrayList<Square> squareList = new ArrayList<>();
-        Marker lol = Marker.EMPTY;
+        
         System.out.println("Test starts here!");
-//        System.out.println(lol);
-//        lol = Marker.QUESTIONMARK;
-//        System.out.println(lol);
-//        int a = 30;
-//        int b = a % 8;
-//        int c = a / 8;
-//        int d = c*8+b;
-//        System.out.println(b);
-//        System.out.println(c);
-//        System.out.println(d);
+        Scanner input = new Scanner(System.in);
         int x = 30;
         int y = 16;
         int mines = 10;
-//        Minefield easy = new Minefield(x,y,10);
-//        String board = easy.toString();
-//        for(int i = board.length()-1; i >= 0; i--){
-//            if((i)%x == 0)
-//                System.out.println(board.charAt(i));
-//            else
-//                System.out.print(board.charAt(i));
-//        }
-//        System.out.println("");
-//        int[] test;
-        
-//          test = mineIndex(9,10);
-//        for(int j = 0; j < 64; j++){
-//            test = adjacentIndexes(j);
-//            for(int i = 0; i < test.length; i++){
-//                System.out.print(test[i] + ", ");
-//            }
-//            System.out.println("");
-//        }
-        String s = "1\n2\n3";
+        boolean gameOn = true;
+
         Player player1 = new Player(x,y,mines);
-        System.out.println("This is a test: \n" + player1.toString());
-       
-//        Square sq = new Square();
-//        System.out.println("This is a square: " + sq);
-//        sq.setMine();
-//        squareList.add(sq);
-//        System.out.println("This is a mine: " + sq);
-//        sq.setMine(false);
-//        squareList.add(sq);
-//        sq.setAdjacentMines(4);
-//        squareList.add(sq);
-//        System.out.println("This is a number: " + sq);
-//        System.out.println("Number of elements in the list is: " + squareList.size());
+        while(gameOn){
+            System.out.println(player1.toString());
+            System.out.println("Left or right click? (L/R)");
+            String in = input.next();
+            if(in.equalsIgnoreCase("l")){
+                gameOn = player1.leftClick(input.nextInt());
+                if(gameOn && player1.gameWon()){
+                    System.out.println(player1.toString());
+                    System.out.println("CONGRATULATIONS! GAME WON");
+                    break;
+                }
+            }else if(in.equalsIgnoreCase("r")){
+                player1.rightClick(input.nextInt());
+            }
+        }
+        
         System.out.println("Test ends here!");
         
     }
@@ -65,14 +41,10 @@ public class TestClass {
         int size = 8;
         int x = index % size;
         int y = index / size;
-//        System.out.println("x: " + x);
-//        System.out.println("y: " + y);
-        System.out.print(index + ". IDs added: ");
         ArrayList<Integer> adjacentId = new ArrayList<>();
         for(int dx = (x > 0 ? -1 : 0); dx <= (x < size-1 ? 1 : 0); ++dx){
             for(int dy = (y > 0 ? -1 : 0); dy <= (y < size-1 ? 1 : 0); ++dy){
                 if(dx != 0 || dy != 0){
-//                    System.out.print((((dy+y)*size)+(dx+x)));
                     adjacentId.add((((dy+y)*size)+(dx+x)));
                 }
             }

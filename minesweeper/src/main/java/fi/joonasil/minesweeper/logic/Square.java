@@ -60,17 +60,24 @@ public class Square {
         marker = Marker.QUESTIONMARK;
     }
     
+    public void setEmpty(){
+        marker = Marker.EMPTY;
+    }
+    
     @Override
     public String toString(){
         if(marker == Marker.FLAG)
             return "F";
         else if(marker == Marker.QUESTIONMARK)
             return "?";
-        else if(mine)
+        else if(isOpen && mine)
             return "#";
         else if(isOpen && adjacentMines == 0)
             return "x";
-        return Integer.toString(adjacentMines);
+        else if(isOpen)
+            return Integer.toString(adjacentMines);
+        else
+            return "0";
     }
 }
 

@@ -5,6 +5,7 @@ public class Minefield {
     private ArrayList<Square> board = new ArrayList<>();
     private final int X;
     private final int Y;
+    private final int MINES;
     
     public Minefield(int x, int y, int mines){
         if(x < 9)
@@ -13,6 +14,7 @@ public class Minefield {
             y = 9;
         this.X = x;
         this.Y = y;
+        this.MINES = mines;
         int size = x*y;
         if (mines > size)
             mines = (int)size/2;
@@ -24,16 +26,13 @@ public class Minefield {
             if(mineId.get(j) == i && j < mines){
                 sq = new Square(true);
                 board.add(sq);
-//                System.out.println(i + ": Added a mine to the board!");
                 j++;
                 if(j == mines){
-//                    System.out.println("ADDED TOTAL OF " + j + " MINES!");
                     j = 0;
                 }
             }else{
                 sq = new Square();
                 board.add(sq);
-//                System.out.println(i + ": Added a empty square to the board!");
             }          
         }
         countAdjacentMines();
@@ -63,28 +62,20 @@ public class Minefield {
                         mines++;
                 }
                 board.get(i).setAdjacentMines(mines);
-//                System.out.println("I set adjacent mines!");
             }
         }
     }   
     private ArrayList<Integer> adjacentIndexes(int index){
-//        int size = (int)Math.sqrt(board.size());
-//        System.out.println("Size: " + size);
-        int x = index % X;
-        int y = index / X;
-//        System.out.println("x: " + x);
-//        System.out.println("y: " + y);
-//        System.out.print(index + ". IDs added: ");
+        int x = index % this.getX();
+        int y = index / this.getX();
         ArrayList<Integer> adjacentId = new ArrayList<>();
         for(int dx = (x > 0 ? -1 : 0); dx <= (x < X-1 ? 1 : 0); ++dx){
             for(int dy = (y > 0 ? -1 : 0); dy <= (y < Y-1 ? 1 : 0); ++dy){
                 if(dx != 0 || dy != 0){
-//                    System.out.print((((dy+y)*X)+(dx+x)) + ", ");
                     adjacentId.add((((dy+y)*X)+(dx+x)));
                 }
             }
         }
-        System.out.println();
         return adjacentId;
     }
     
@@ -92,7 +83,6 @@ public class Minefield {
         Square current = board.get(index);
         if(current.getMarker() == Marker.EMPTY){
                 current.open();
-                System.out.println("I opened a square!");
             if(current.isMine())
                 return false;
             if(current.getAdjacentMines() == 0){
@@ -106,11 +96,18 @@ public class Minefield {
                     }
                 }
             }
-        }else{
-            System.out.println("Can't open flag or questionmark.");
         }
-        
         return true;
+    }
+    
+    public void changeMarker(int index){
+        Square current = board.get(index);
+        if(current.getMarker() == Marker.EMPTY && !current.isOpen())
+            current.setFlag();
+        else if(current.getMarker() == Marker.FLAG)
+            current.setQuestionM();
+        else
+            current.setEmpty();
     }
     
     public int getX(){
@@ -119,6 +116,22 @@ public class Minefield {
     
     public int getY(){
         return this.Y;
+    }
+    
+    public int getMines(){
+        return this.MINES;
+    }
+    
+    public boolean isUnopenedSquares(){
+        int size = this.getX()*this.getY();
+        int unopened = 0;
+        for(int i = 0; i < size; i++){
+            if(!board.get(i).isOpen())
+                unopened++;
+        }
+        if(unopened == this.getMines())
+            return false;
+        return true;
     }
     
     @Override

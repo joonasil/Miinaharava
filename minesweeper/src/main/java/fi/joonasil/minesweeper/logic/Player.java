@@ -26,7 +26,6 @@ public class Player {
     
    public boolean leftClick(int index){
        if(board.openSquares(index)){
-           System.out.println("I'm alive");
            return true;
        }else{
            System.out.println("GAME OVER!");
@@ -35,7 +34,11 @@ public class Player {
    }
    
    public void rightClick(int index){
-       
+       board.changeMarker(index);
+   }
+   
+   public boolean gameWon(){
+       return !(board.isUnopenedSquares());
    }
    
    @Override
