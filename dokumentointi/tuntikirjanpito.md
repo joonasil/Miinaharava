@@ -6,4 +6,5 @@
 - 25.01.2016 6h Pelilogiikan ohjelmoinnin aloitusta ja luokkakaavion suunnittelua.
 - 26.01.2016 7h Bugien korjausta ja lisää logiikkaa.
 - 27.01.2016 3h Pelilogiikan muokkausta ja kirjoittamista.
-- 28.01.2016 xh Pelaajan logiikan kirjoittamista.
+- 28.01.2016 2h Pelaajan logiikan kirjoittamista.
+- 29.01.2016 3h Junit testien tekoa.
