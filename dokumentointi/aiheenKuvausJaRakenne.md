@@ -17,3 +17,5 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 - Tallenna Peli
 - Katso huipputuloksia
 
+##### Luokkakaavio
+![Luokkakaavio](/dokumentointi/luokkakaavio.png)
