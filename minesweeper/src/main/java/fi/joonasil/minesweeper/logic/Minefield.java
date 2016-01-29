@@ -12,6 +12,8 @@ public class Minefield {
             x = 9;
         if(y < 9)
             y = 9;
+        if(mines < (int)(x*y)/8)
+            mines = (int)(x*y)/8;
         this.X = x;
         this.Y = y;
         this.MINES = mines;
@@ -20,7 +22,7 @@ public class Minefield {
             mines = (int)size/2;
       
         Square sq;
-        ArrayList<Integer> mineId = mineIndex(mines);
+        ArrayList<Integer> mineId = mineIndexes(mines);
         int j = 0;
         for(int i = 0; i < (size) ;i++){
             if(mineId.get(j) == i && j < mines){
@@ -38,7 +40,32 @@ public class Minefield {
         countAdjacentMines();
     }
     
-    private ArrayList<Integer> mineIndex(int mines){
+    public Minefield(){
+        this.X = 9;
+        this.Y = 9;
+        this.MINES = 10;
+        int size = 81;
+      
+        Square sq;
+        ArrayList<Integer> mineId = mineIndexes(10);
+        int j = 0;
+        for(int i = 0; i < (size) ;i++){
+            if(mineId.get(j) == i && j < 10){
+                sq = new Square(true);
+                board.add(sq);
+                j++;
+                if(j == 10){
+                    j = 0;
+                }
+            }else{
+                sq = new Square();
+                board.add(sq);
+            }          
+        }
+        countAdjacentMines();
+    }
+    
+    private ArrayList<Integer> mineIndexes(int mines){
         ArrayList<Integer> mineId = new ArrayList<>();
         Random rand = new Random();
         while(mineId.size() < mines){

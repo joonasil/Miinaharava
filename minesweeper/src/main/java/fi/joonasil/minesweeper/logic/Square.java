@@ -2,26 +2,33 @@ package fi.joonasil.minesweeper.logic;
 
 public class Square {
     private int adjacentMines;
-    private boolean mine;
+    private boolean isMine;
     private boolean isOpen;
     private Marker marker;
     
     public Square(){
         this.adjacentMines = 0;
         this.marker = Marker.EMPTY;
-        this.mine = false;
+        this.isMine = false;
         this.isOpen = false;
     }
     
     public Square(boolean mine){
         this.adjacentMines = 0;
         this.marker = Marker.EMPTY;
-        this.mine = mine;
+        this.isMine = mine;
+        this.isOpen = false;
+    }
+    
+    public Square(int mines){
+        this.adjacentMines = mines;
+        this.marker = Marker.EMPTY;
+        this.isMine = false;
         this.isOpen = false;
     }
     
     public boolean isMine(){
-        return mine;
+        return this.isMine;
     }
     
     public int getAdjacentMines(){
@@ -32,24 +39,25 @@ public class Square {
         return marker;
     }
     
-    public void open(){
-        this.isOpen = true;
-    }
-    
     public boolean isOpen(){
         return this.isOpen;
     }
     
+     public void open(){
+        this.isOpen = true;
+    }
+    
     public void setMine(){
-        mine = true;
+        this.isMine = true;
     }
     
     public void setMine(boolean x){
-        mine = x;
+        this.isMine = x;
     }
     
     public void setAdjacentMines(int x){
-        adjacentMines = x;
+        if(1 <= x && x <= 8)
+            adjacentMines = x;
     }
     
     public void setFlag(){
@@ -70,7 +78,7 @@ public class Square {
             return "F";
         else if(marker == Marker.QUESTIONMARK)
             return "?";
-        else if(isOpen && mine)
+        else if(isOpen && this.isMine())
             return "#";
         else if(isOpen && adjacentMines == 0)
             return "x";

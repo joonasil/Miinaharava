@@ -11,9 +11,9 @@ public class TestClass {
         
         System.out.println("Test starts here!");
         Scanner input = new Scanner(System.in);
-        int x = 30;
-        int y = 16;
-        int mines = 10;
+        int x = 1;
+        int y = 1;
+        int mines = 1;
         boolean gameOn = true;
 
         Player player1 = new Player(x,y,mines);
@@ -32,7 +32,7 @@ public class TestClass {
                 player1.rightClick(input.nextInt());
             }
         }
-        
+
         System.out.println("Test ends here!");
         
     }
