@@ -1,6 +1,6 @@
 package fi.joonasil.minesweeper.logic;
 import java.util.*;
-
+import fi.joonasil.minesweeper.other.Saves;
 public class Minefield {
     private ArrayList<Square> board = new ArrayList<>();
     private final int X;
@@ -145,6 +145,10 @@ public class Minefield {
         return this.MINES;
     }
     
+    public int getSize(){
+        return this.getX()*this.getY();
+    }
+    
     public ArrayList<Square> getSquares(){
        return this.board; 
     } 
@@ -162,11 +166,16 @@ public class Minefield {
         return true;
     }
     
+    public void saveGame(String s){
+        Saves save = new Saves();
+        save.saveGame(s);
+    }
+    
     @Override
     public String toString(){
         String s = "";
-        for(int i = 0; i < board.size(); i++){
-            if((i)%this.getX() == 0 && i != 0){
+        for(int i = 0; i < this.getSize(); i++){
+            if((i)%this.getX() == 0 && i != 0 && i < this.getSize()-1){
                s = s + "\n";
            }
             s = s + board.get(i).toString();
