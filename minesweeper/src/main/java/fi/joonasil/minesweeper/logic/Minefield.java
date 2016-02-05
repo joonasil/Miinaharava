@@ -16,27 +16,11 @@ public class Minefield {
             mines = (int)(x*y)/8;
         this.X = x;
         this.Y = y;
-        this.MINES = mines;
         int size = x*y;
         if (mines > size)
             mines = (int)size/2;
-      
-        Square sq;
-        ArrayList<Integer> mineId = mineIndexes(mines);
-        int j = 0;
-        for(int i = 0; i < (size) ;i++){
-            if(mineId.get(j) == i && j < mines){
-                sq = new Square(true);
-                board.add(sq);
-                j++;
-                if(j == mines){
-                    j = 0;
-                }
-            }else{
-                sq = new Square();
-                board.add(sq);
-            }          
-        }
+        this.MINES = mines;    
+        addSquares(size);
         countAdjacentMines();
     }
     
@@ -45,24 +29,36 @@ public class Minefield {
         this.Y = 9;
         this.MINES = 10;
         int size = 81;
-      
+        Square sq;
+        int j = 0;
+        for(int i = 0; i < (size); i++){
+            if(i%2 == 0 && j < this.getMines()){
+                sq = new Square(true);
+                j++;
+            }else{
+                sq = new Square();
+            }
+            board.add(sq);
+        }     
+        countAdjacentMines();
+    }
+    
+    private void addSquares(int size){
         Square sq;
         ArrayList<Integer> mineId = mineIndexes(10);
         int j = 0;
-        for(int i = 0; i < (size) ;i++){
+        for(int i = 0; i < (size); i++){
             if(mineId.get(j) == i && j < 10){
                 sq = new Square(true);
-                board.add(sq);
                 j++;
                 if(j == 10){
                     j = 0;
                 }
             }else{
                 sq = new Square();
-                board.add(sq);
-            }          
-        }
-        countAdjacentMines();
+            }
+            board.add(sq);
+        }     
     }
     
     private ArrayList<Integer> mineIndexes(int mines){
@@ -149,6 +145,11 @@ public class Minefield {
         return this.MINES;
     }
     
+    public ArrayList<Square> getSquares(){
+       return this.board; 
+    } 
+            
+            
     public boolean isUnopenedSquares(){
         int size = this.getX()*this.getY();
         int unopened = 0;
@@ -165,8 +166,11 @@ public class Minefield {
     public String toString(){
         String s = "";
         for(int i = 0; i < board.size(); i++){
+            if((i)%this.getX() == 0 && i != 0){
+               s = s + "\n";
+           }
             s = s + board.get(i).toString();
         }
-        return s;
+       return s;
     }
 }
