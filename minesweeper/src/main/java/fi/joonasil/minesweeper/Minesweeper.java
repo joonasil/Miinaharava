@@ -6,18 +6,24 @@ import static javafx.application.Application.launch;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-
-public class Minesweeper extends Application{
+/**
+ * Ohjelman Main luokka.
+ * @author Joonas Ilvonen
+ */
+public class Minesweeper extends Application {
     
     private static Stage window;
     
-    public static void main(String[]args){
+    /**
+     * Käynnistää javafx ikkunan.
+     * @param args Komentorivillä annetut argumentit käynnistettäessä java ohjelma.
+     */
+    public static void main(String[]args) {
         launch(args);
     }
     
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         window = primaryStage;
         primaryStage.setTitle("Minesweeper");
         MineFactory.getSettings();
@@ -26,11 +32,18 @@ public class Minesweeper extends Application{
         window.show();
     }
     
-    public static void quitGame(){
+    /**
+     * Sulkee ohjelman.
+     */
+    public static void quitGame() {
         window.close();
     }
     
-    public static void setScene(Scene scene){
+    /**
+     * Asettaa ohjelman näkymäksi uuden Scene olion
+     * @param scene Uusi näkymä
+     */
+    public static void setScene(Scene scene) {
         window.setScene(scene);
     }
 }

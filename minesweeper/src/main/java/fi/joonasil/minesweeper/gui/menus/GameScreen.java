@@ -2,7 +2,7 @@
 package fi.joonasil.minesweeper.gui.menus;
 
 import fi.joonasil.minesweeper.Minesweeper;
-import fi.joonasil.minesweeper.gui.square.SquareGUI;
+import fi.joonasil.minesweeper.gui.square.SquareGui;
 import fi.joonasil.minesweeper.logic.Minefield;
 import fi.joonasil.minesweeper.other.ImageLoader;
 import fi.joonasil.minesweeper.other.MineFactory;
@@ -16,10 +16,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
+
+/**
+ * Luokka rakentaa ikkunan näkymän ja tällä hetkellä myös hoitaa valikoiden 
+ * tepahtumat. (anonymous inner classes)
+ * 
+ * @author Joonas Ilvonen
+ */
 public class GameScreen {
     
     Scene scene;
-    ArrayList<SquareGUI> squares = new ArrayList<>();
+    ArrayList<SquareGui> squares = new ArrayList<>();
     ArrayList<Image> imgs;
     MouseInput handler = new MouseInput();
     
@@ -32,7 +39,11 @@ public class GameScreen {
         scene = new Scene(layout, (x+1)*32, (y+2.3)*32);
     }
     
-    
+    /**
+     * Luo ikkunan yläreunassa olevan valikon.
+     * 
+     * @return Luotu valikko.
+     */
     public MenuBar constructMenuBar(){
         //Main menu bar
         MenuBar menuBar = new MenuBar();
@@ -62,7 +73,7 @@ public class GameScreen {
         
         gameMenu.getItems().addAll(newGame, loadGame, saveGame, quitGame);
        
-         //Difficulty menu
+        //Difficulty menu
         Menu diffMenu = new Menu("Difficulty");
         
         //Game menu items
@@ -100,6 +111,12 @@ public class GameScreen {
         return menuBar;
     }
     
+    /**
+     * Metodi luo palkin pelin tiedoille kuten jäljellä oleville miinoille
+     * ja ajastimelle.
+     * 
+     * @return Luotu palkki.
+     */
     public HBox constructInfoBar(){
         //HBox For Mines Left and Timer
         HBox info = new HBox();
@@ -110,13 +127,20 @@ public class GameScreen {
         return info;
     }
     
+    /**
+     * Luo peliruudukon miinaharavalle.
+     * 
+     * @param x Ruudukon leveys ruuduissa.
+     * @param y Ruudukon korkeus ruuduissa.
+     * @return luotu peliruudukko.
+     */
     public GridPane constructBoard(int x, int y){
         GridPane layout = new GridPane();
         layout.setMaxSize(x*32, y*32);
         layout.setMinSize(x*32, y*32);
         for(int i = 0; i < y; i++){
             for(int j = 0; j < x; j++){
-                squares.add(new SquareGUI(imgs,i*x+j));
+                squares.add(new SquareGui(imgs,i*x+j));
                 GridPane.setConstraints(squares.get(i*x+j).getCurrent(), j, i);
                 layout.getChildren().add(squares.get(i*x+j).getCurrent());
             }
@@ -125,16 +149,19 @@ public class GameScreen {
         return layout;
     }
     
-    public Scene getScene(){
+    public Scene getScene() {
         return this.scene;
     }
     
-    public void setImage(int index, int imgIndex){
+    public void setImage(int index, int imgIndex) {
         this.squares.get(index).setCurrent(imgIndex);
     }
     
-    public void setActions(){
-        for(SquareGUI sq : squares){
+    /**
+     * Asettaa tapahtumien hoitamisen peliruudukolle.
+     */
+    public void setActions() {
+        for (SquareGui sq : squares){
             sq.setOnMousePressed(e -> handler.handle(e));
             sq.setOnMouseReleased(e -> handler.handle(e));
             sq.setOnMouseDragEntered(e -> handler.handle(e));

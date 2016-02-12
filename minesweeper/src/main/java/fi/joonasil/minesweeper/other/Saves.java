@@ -11,21 +11,18 @@ import java.util.ArrayList;
 public class Saves {
     static Charset utf8 = StandardCharsets.UTF_8;
     static ArrayList<String> save = new ArrayList<>();
-    
-    public Saves(){
-        
-    }
-    
-    public static void saveGame(String data){
+  
+    public static void saveGame(String data) {
         Path filePath = Paths.get("saves/save1.txt");
         Saves.save.addAll(Arrays.asList(data.split("\\n")));   
-        if(Files.exists(filePath))
-            try{
+        if (Files.exists(filePath)) {
+            try {
                 Files.delete(filePath);
-            }catch(IOException e){}
-        try{
+            } catch(IOException e) { }
+        }
+        try {
             System.out.println("File saved to: " + Files.write(filePath, Saves.save, Saves.utf8).toString());
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Can't save");
         }  
     }

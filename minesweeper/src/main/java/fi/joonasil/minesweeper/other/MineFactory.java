@@ -4,7 +4,11 @@ import fi.joonasil.minesweeper.GameSettings;
 import fi.joonasil.minesweeper.gui.menus.GameScreen;
 import fi.joonasil.minesweeper.logic.Minefield;
 
-
+/**
+ * Luokka kaikkien komponenttien yhdistämiselle. Nimi voi muuttua.
+ * 
+ * @author Joonas Ilvonen
+ */
 public class MineFactory {
     
     private static GameScreen screen;

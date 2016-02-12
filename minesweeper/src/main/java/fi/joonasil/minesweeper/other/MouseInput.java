@@ -1,28 +1,21 @@
 package fi.joonasil.minesweeper.other;
 
-import fi.joonasil.minesweeper.gui.square.SquareGUI;
+import fi.joonasil.minesweeper.gui.square.SquareGui;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class MouseInput implements EventHandler<MouseEvent>{
     
-    SquareGUI current;
+    ImageView current;
     
     @Override
     public void handle(MouseEvent event) {
-        if(event.getButton() == MouseButton.PRIMARY){
-            if(event.equals(MouseEvent.MOUSE_PRESSED)){
-                MineFactory.getScreen().setImage(0, 1);
-            }else if(event.equals(MouseEvent.MOUSE_RELEASED)){
-                MineFactory.getScreen().setImage(0, 0);
-            }
-        }else if(event.getButton() == MouseButton.SECONDARY){
-            
-        }
-        
-        
+        current = (ImageView)(event.getTarget());
+        System.out.println(event.getEventType().toString());
+        System.out.println(event.getEventType().equals(MouseEvent.MOUSE_PRESSED));
     }
     
     public void handleLeftPressed(MouseEvent event){

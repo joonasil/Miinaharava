@@ -153,22 +153,22 @@ public class SquareTest {
         square.setEmpty();
         assertEquals(Marker.EMPTY, square.getMarker());
     }
-    
-    @Test
-    public void setMine(){
-        square.setMine();
-        assertEquals(true, square.isMine());
-    }
-    
-    @Test
-    public void setToMine(){
-        square.setMine(true);
-        assertEquals(true, square.isMine());
-    }
-    
-    @Test
-    public void setToNotMine(){
-        square.setMine(false);
-        assertEquals(false, square.isMine());
-    }
+//    
+//    @Test
+//    public void setMine(){
+//        square.setMine();
+//        assertEquals(true, square.isMine());
+//    }
+//    
+//    @Test
+//    public void setToMine(){
+//        square.setMine(true);
+//        assertEquals(true, square.isMine());
+//    }
+//    
+//    @Test
+//    public void setToNotMine(){
+//        square.setMine(false);
+//        assertEquals(false, square.isMine());
+//    }
 }

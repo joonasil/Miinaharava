@@ -32,6 +32,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+
+/**
+ * 
+ * 
+ * TESTILUOKKA DEBUGGAAMISEEN EI OSA PROJEKTIA!!
+ * 
+ * 
+ * 
+ * 
+ * @author Joonas Ilvonen
+ */
 public class TestClass extends Application{
     public static void main(String[] args){     
         System.out.println("Test starts here!");

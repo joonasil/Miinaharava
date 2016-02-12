@@ -1,5 +1,10 @@
 package fi.joonasil.minesweeper.logic;
 
+/**
+ * Luokka yksittäisen peliruudun logiikalle.
+ * 
+ * @author Joonas
+ */
 public class Square {
     private int adjacentMines;
     private boolean isMine;
@@ -47,13 +52,13 @@ public class Square {
         this.isOpen = true;
     }
     
-    public void setMine(){
-        this.isMine = true;
-    }
-    
-    public void setMine(boolean x){
-        this.isMine = x;
-    }
+//    public void setMine(){
+//        this.isMine = true;
+//    }
+//    
+//    public void setMine(boolean x){
+//        this.isMine = x;
+//    }
     
     public void setAdjacentMines(int x){
         if(1 <= x && x <= 8)
@@ -72,6 +77,11 @@ public class Square {
         marker = Marker.EMPTY;
     }
     
+    /**
+     * Metodi luokan tietojen muuttamiseksi tallennettavaan muotoon.
+     * 
+     * @return luokan tiedot tallennettavassa muodossa.
+     */
     public String toSaveFormat(){
         String save = "";
         save += (this.isOpen() ? "1" : "0");

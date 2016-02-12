@@ -1,31 +1,34 @@
 package fi.joonasil.minesweeper;
 
+/**
+ * Luokka pelin asetuksille. Asetuksia voi asettaa ja hakea.
+ *
+ * @author Joonas Ilvonen
+ */
 public class GameSettings {
     private int mines;
     private int x;
     private int y;
     private int difficulty;
     
-    public GameSettings(int mines, int x, int y, int diff){
-        this.mines = mines;
-        this.x = x;
-        this.y = y;
-        this.difficulty = diff;
-    }
-    
-    public GameSettings(){
+    public GameSettings() {
         this.mines = 10;
         this.x = 9;
         this.y = 9;
         this.difficulty = 0;
     }
     
-    public int getDifficulty(){
+    public int getDifficulty() {
         return this.difficulty;
     }
-
-    public void setDifficulty(int value){
-        switch(value){
+    
+    /**
+     * Asettaa vaikeusasteen parametrina annetun luvun perusteella.
+     * (vaikeusaste mahdollisesti muuttuu integeristä enum tyypiksi)
+     * @param value uusi vaikeusaste
+     */
+    public void setDifficulty(int value) {
+        switch(value) {
             case 0:
                 this.mines = 10;
                 this.x = 9;
