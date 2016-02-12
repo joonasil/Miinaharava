@@ -72,6 +72,26 @@ public class Square {
         marker = Marker.EMPTY;
     }
     
+    public String toSaveFormat(){
+        String save = "";
+        save += (this.isOpen() ? "1" : "0");
+        save += (this.isMine() ? "1" : "0");
+        save += this.getAdjacentMines();
+        switch(this.getMarker()){
+            case EMPTY:
+                save += "0";
+                break;
+            case FLAG:
+                save += "1";
+                break;
+            case QUESTIONMARK:
+                save += "2";
+                break;
+        }     
+        save += "|";
+        return save;
+    }
+    
     @Override
     public String toString(){
         if(marker == Marker.FLAG)

@@ -1,11 +1,15 @@
 package fi.joonasil.minesweeper.logic;
-import java.util.*;
-import fi.joonasil.minesweeper.other.Saves;
+import java.util.Random;
+import java.util.ArrayList;
+import fi.joonasil.minesweeper.other.*;
+import java.util.Collections;
 public class Minefield {
     private ArrayList<Square> board = new ArrayList<>();
     private final int X;
     private final int Y;
     private final int MINES;
+    private int minesLeft;
+    
     
     public Minefield(int x, int y, int mines){
         if(x < 9)
@@ -19,7 +23,8 @@ public class Minefield {
         int size = x*y;
         if (mines > size)
             mines = (int)size/2;
-        this.MINES = mines;    
+        this.MINES = mines;
+        minesLeft = this.getMines();
         addSquares(size);
         countAdjacentMines();
     }
@@ -125,12 +130,15 @@ public class Minefield {
     
     public void changeMarker(int index){
         Square current = board.get(index);
-        if(current.getMarker() == Marker.EMPTY && !current.isOpen())
+        if(current.getMarker() == Marker.EMPTY && !current.isOpen()){
             current.setFlag();
-        else if(current.getMarker() == Marker.FLAG)
+            this.minesLeft--;
+        }else if(current.getMarker() == Marker.FLAG){
             current.setQuestionM();
-        else
+            this.minesLeft++;
+        }else{
             current.setEmpty();
+        }
     }
     
     public int getX(){
@@ -151,8 +159,8 @@ public class Minefield {
     
     public ArrayList<Square> getSquares(){
        return this.board; 
-    } 
-            
+    }
+   
             
     public boolean isUnopenedSquares(){
         int size = this.getX()*this.getY();
@@ -166,9 +174,15 @@ public class Minefield {
         return true;
     }
     
-    public void saveGame(String s){
-        Saves save = new Saves();
-        save.saveGame(s);
+    public void saveGame(){
+        String s = "";
+       for(int i = 0; i < this.getSize(); i++){
+            if((i)%this.getX() == 0 && i != 0 && i < this.getSize()-1){
+               s += "$";
+           }
+            s += board.get(i).toSaveFormat();
+        }
+       Saves.saveGame(s);
     }
     
     @Override

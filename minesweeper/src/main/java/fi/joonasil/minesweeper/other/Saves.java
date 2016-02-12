@@ -7,29 +7,26 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 
 public class Saves {
-    Charset utf8 = StandardCharsets.UTF_8;
-    ArrayList<String> save = new ArrayList<>();
+    static Charset utf8 = StandardCharsets.UTF_8;
+    static ArrayList<String> save = new ArrayList<>();
     
     public Saves(){
         
     }
     
-    public void saveGame(String data){
-        Scanner scan = new Scanner(data);
-        while(scan.hasNextLine()){
-            this.save.add(scan.nextLine());
-            System.out.println("Added a line!!!");
-        }
-        try {
-
-        Files.write(Paths.get("save1.txt"), this.save, this.utf8);
-
-        } catch (IOException e) {
-        e.printStackTrace();
+    public static void saveGame(String data){
+        Path filePath = Paths.get("saves/save1.txt");
+        Saves.save.addAll(Arrays.asList(data.split("\\n")));   
+        if(Files.exists(filePath))
+            try{
+                Files.delete(filePath);
+            }catch(IOException e){}
+        try{
+            System.out.println("File saved to: " + Files.write(filePath, Saves.save, Saves.utf8).toString());
+        }catch (IOException e){
+            System.out.println("Can't save");
         }  
     }
 }
