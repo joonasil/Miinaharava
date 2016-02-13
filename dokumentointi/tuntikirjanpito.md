@@ -13,3 +13,4 @@
 - 10.02.2016 4h GUI:n aloittamista ja JavaFX:n opettelua
 - 11.02.2016 4h GUI:n tekemistä resurssien piirtoa
 - 12.02.2016 4h checkstyle raportin luonti, checkstyle virheiden korjausta, GUI:n tekoa
+- 13.02.2016 5h GUI:n kirjoittamista, luokkien siistimistä, Junit testien kirjoittamista ja siistimistä.
