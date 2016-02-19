@@ -11,6 +11,9 @@ public class GameSettings {
     private int y;
     private int difficulty;
     
+    /**
+     * Konstruktori luo pelin asetukset oletuksena helpolla vaikeusasteella.
+     */
     public GameSettings() {
         this.mines = 10;
         this.x = 9;
@@ -23,37 +26,33 @@ public class GameSettings {
     }
     
     /**
-     * Asettaa vaikeusasteen parametrina annetun luvun perusteella.
-     * (vaikeusaste mahdollisesti muuttuu integeristä enum tyypiksi)
-     * @param value uusi vaikeusaste
+     * Asettaa vaikeusasteen helpoksi.
      */
-    public void setDifficulty(int value) {
-        switch(value) {
-            case 0:
-                this.mines = 10;
-                this.x = 9;
-                this.y = 9;
-                this.difficulty = value;
-                break;
-            case 1:
-                this.mines = 40;
-                this.x = 16;
-                this.y = 16;
-                this.difficulty = value;
-                break;
-            case 2:
-                this.mines = 99;
-                this.x = 30;
-                this.y = 16;
-                this.difficulty = value;
-                break;
-            default:
-                this.mines = 10;
-                this.x = 9;
-                this.y = 9;
-                this.difficulty = 0;
-                break;
-        }
+    public void setEasy() {
+        this.mines = 10;
+        this.x = 9;
+        this.y = 9;
+        this.difficulty = 0;
+    }
+    
+    /**
+    * Asettaa vaikeusasteen keskivaikeaksi.
+    */
+    public void setMedium() {
+        this.mines = 40;
+        this.x = 16;
+        this.y = 16;  
+        this.difficulty = 1;
+    }
+    
+    /**
+    * Asettaa vaikeusasteen vaikeaksi.
+    */
+    public void setHard() {
+        this.mines = 99;
+        this.x = 30;
+        this.y = 16;
+        this.difficulty = 2;
     }
     
     public int getMines() {
@@ -80,5 +79,8 @@ public class GameSettings {
         this.y = y;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Size: " + x + " x " + y + " Mines: " + mines + " Difficulty: " + difficulty;
+    }
 }

@@ -11,69 +11,86 @@ public class Square {
     private boolean isOpen;
     private Marker marker;
     
-    public Square(){
+    /**
+     * Luo uuden tyhjän ruudun.
+     */
+    public Square() {
         this.adjacentMines = 0;
         this.marker = Marker.EMPTY;
         this.isMine = false;
         this.isOpen = false;
     }
     
-    public Square(boolean mine){
+    /**
+     * Luo uuden ruudun joko miinaksi tai tyhjäksi ruuduksi riippuen
+     * parametrin arvosta.
+     * 
+     * @param mine Onko ruutu miina.
+     */
+    public Square(boolean mine) {
         this.adjacentMines = 0;
         this.marker = Marker.EMPTY;
         this.isMine = mine;
         this.isOpen = false;
     }
     
-    public Square(int mines){
-        this.adjacentMines = mines;
-        this.marker = Marker.EMPTY;
-        this.isMine = false;
-        this.isOpen = false;
-    }
-    
-    public boolean isMine(){
+    public boolean isMine() {
         return this.isMine;
     }
     
-    public int getAdjacentMines(){
+    public int getAdjacentMines() {
         return adjacentMines;
     }
     
-    public Marker getMarker(){
+    public Marker getMarker() {
         return marker;
     }
     
-    public boolean isOpen(){
+    public boolean isOpen() {
         return this.isOpen;
     }
     
-     public void open(){
+    /**
+     * Asettaa ruudun avatuksi.
+     */
+    public void open() {
         this.isOpen = true;
     }
-    
-//    public void setMine(){
-//        this.isMine = true;
-//    }
-//    
-//    public void setMine(boolean x){
-//        this.isMine = x;
-//    }
-    
-    public void setAdjacentMines(int x){
-        if(1 <= x && x <= 8)
+   
+    /**
+     * Asettaa tiedon ruudun viereisien miinojen määrästä.
+     * @param x Ruudun viereisten miinojen määrä.
+     */
+    public void setAdjacentMines(int x) {
+        if (1 <= x && x <= 8) {
             adjacentMines = x;
+        } else {
+            adjacentMines = 0;
+        }
+    }
+
+    public void setIsMine(boolean isMine) {
+        this.isMine = isMine;
     }
     
-    public void setFlag(){
+    /**
+     * Asettaa ruudun lipuksi.
+     */
+    public void setFlag() {
         marker = Marker.FLAG;
     }
     
-    public void setQuestionM(){
+    /**
+     * Asettaa ruudun kysymysmerkiksi.
+     */
+    public void setQuestionM() {
         marker = Marker.QUESTIONMARK;
     }
     
-    public void setEmpty(){
+    /**
+     * Asettaa ruudun normaaliksi.
+     */
+    public void setEmpty() {
         marker = Marker.EMPTY;
     }
     
@@ -82,12 +99,12 @@ public class Square {
      * 
      * @return luokan tiedot tallennettavassa muodossa.
      */
-    public String toSaveFormat(){
+    public String toSaveFormat() {
         String save = "";
         save += (this.isOpen() ? "1" : "0");
         save += (this.isMine() ? "1" : "0");
         save += this.getAdjacentMines();
-        switch(this.getMarker()){
+        switch(this.getMarker()) {
             case EMPTY:
                 save += "0";
                 break;
@@ -103,19 +120,20 @@ public class Square {
     }
     
     @Override
-    public String toString(){
-        if(marker == Marker.FLAG)
+    public String toString() {
+        if (marker == Marker.FLAG) {
             return "F";
-        else if(marker == Marker.QUESTIONMARK)
+        } else if (marker == Marker.QUESTIONMARK) {
             return "?";
-        else if(isOpen && this.isMine())
-            return "#";
-        else if(isOpen && adjacentMines == 0)
-            return "x";
-        else if(isOpen)
-            return Integer.toString(adjacentMines);
-        else
+        } else if (isOpen && this.isMine()) {
+            return "9";
+        } else if (isOpen && adjacentMines == 0) {
             return "0";
+        } else if (isOpen) {
+            return Integer.toString(adjacentMines);
+        } else {
+            return "12";
+        }
     }
 }
 

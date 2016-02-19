@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import fi.joonasil.minesweeper.other.*;
 import java.util.Collections;
+import java.util.HashSet;
 
 /**
  * Luokka peliruudukon logiikalle.
@@ -15,58 +16,37 @@ public class Minefield {
     private final int y;
     private final int mines;
     private int minesLeft;
+    private boolean gameOver;
+    private boolean firstOpened;
     
-    
+    /**
+     * Luo uuden pelilaudan.
+     * 
+     * @param x Peliruudukon ruutujen määrä vaakasuorassa.
+     * @param y Peliruudukon ruutujen määrä pystysuorassa.
+     * @param mines Miinojen määrä peliruudukossa.
+     */
     public Minefield(int x, int y, int mines) {
-        if (x < 9) {
-            x = 9;
-        }
-        if (y < 9) {
-            y = 9;
-        }
-        if (mines < (int) (x * y) / 8) {
-            mines = (int) (x * y) / 8;
-        }
         this.x = x;
         this.y = y;
         int size = x * y;
-        if (mines > size) {
-            mines = (int) size / 2;
-        }
         this.mines = mines;
+        firstOpened = false;
         minesLeft = this.getMines();
+        gameOver = false;
         addSquares(size);
-        countAdjacentMines();
-    }
-    
-    public Minefield() {
-        this.x = 9;
-        this.y = 9;
-        this.mines = 10;
-        int size = 81;
-        Square sq;
-        int j = 0;
-        for (int i = 0; i < (size); i++) {
-            if (i % 2 == 0 && j < this.getMines()) {
-                sq = new Square(true);
-                j++;
-            } else {
-                sq = new Square();
-            }
-            board.add(sq);
-        }     
         countAdjacentMines();
     }
     
     private void addSquares(int size) {
         Square sq;
-        ArrayList<Integer> mineId = mineIndexes(10);
+        ArrayList<Integer> mineId = mineIndexes(this.mines);
         int j = 0;
         for (int i = 0; i < (size); i++) {
-            if (mineId.get(j) == i && j < 10) {
+            if (mineId.get(j) == i && j < this.mines) {
                 sq = new Square(true);
                 j++;
-                if (j == 10) {
+                if (j == this.mines) {
                     j = 0;
                 }
             } else {
@@ -106,8 +86,8 @@ public class Minefield {
         }
     }   
     private ArrayList<Integer> adjacentIndexes(int index) {
-        int x = index % this.getX();
-        int y = index / this.getX();
+        int x = index % this.x;
+        int y = index / this.x;
         ArrayList<Integer> adjacentId = new ArrayList<>();
         for (int dx = (x > 0 ? -1 : 0); dx <= (x < this.x - 1 ? 1 : 0); ++dx) {
             for (int dy = (y > 0 ? -1 : 0); dy <= (y < this.y - 1 ? 1 : 0); ++dy) {
@@ -120,34 +100,49 @@ public class Minefield {
     }
     
     /**
-     * Avaa ruutuja miinaharavan sääntöjen mukaan.
+     * Avaa ruutuja miinaharavan sääntöjen mukaan. Jos ensimmäinen avattu
+     * ruutu on miina, siirtyy miina yläkulmaan.
      * 
      * @param index Indeksi, jota on painettu hiirne vasemmalla painikkeella.
-     * @return tulee muuttumaan int listaksi
+     * @return lista avattujen ruutujen indekseistä
      */
-    public boolean openSquares(int index) {
+    public HashSet<Integer> openSquares(int index) {
         Square current = board.get(index);
-        if (current.getMarker() == Marker.EMPTY) {
-                current.open();
-            if (current.isMine()) {
-                return false;
-            }
-            if (current.getAdjacentMines() == 0) {
-                ArrayList<Integer> adjacent = adjacentIndexes(index);
-                for (Integer list : adjacent) {
-                    current = board.get(list);
-                    if (!current.isOpen()) {
-                        current.open();
-                        if (current.getAdjacentMines() == 0) {
-                            openSquares(list);
-                        }
-                    }
+        HashSet<Integer> openedSquares = new HashSet<>();
+        if (!firstOpened && current.isMine()) {
+            for (int i = 0; i < getSize(); i++) {
+                if (!board.get(i).isMine()) {
+                    board.get(i).setIsMine(true);
+                    break;
                 }
             }
+            countAdjacentMines();
         }
-        return true;
+        current = board.get(index);
+        if (current.isMine()) {
+            gameOver = true;
+            MineFactory.getScreen().gameOver();
+            return openedSquares;
+        }
+        if (current.getMarker() != Marker.EMPTY || current.isOpen()) {
+            return openedSquares;
+        }
+        openedSquares.add(index);
+        current.open();
+        if (current.getAdjacentMines() != 0) {
+            return openedSquares;
+        }
+        ArrayList<Integer> adjacent = adjacentIndexes(index);
+        for (Integer list : adjacent) {
+            current = board.get(list);
+            if (current.getAdjacentMines() == 0) {
+                openedSquares.addAll(openSquares(list));
+            }
+            current.open();
+            openedSquares.add(list);  
+        }
+        return openedSquares;
     }
-    
     /**
      * Pitää kirjaa onko ruutua painettu oikealla hiiren painikkeella.
      * Merkitsee ruudun "lipuksi" tai "kysymysmerkiksi".
@@ -166,69 +161,39 @@ public class Minefield {
             current.setEmpty();
         }
     }
-    
-    public int getX() {
-        return this.x;
-    }
-    
-    public int getY() {
-        return this.y;
-    }
-    
+
     public int getMines() {
         return this.mines;
     }
     
     public int getSize() {
-        return this.getX() * this.getY();
+        return this.x * this.y;
     }
     
     public ArrayList<Square> getSquares() {
-       return board; 
+        return board; 
     }
-   
+
+    public int getMinesLeft() {
+        return minesLeft;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
     /**
      * Metodi tarkistaa onko kaikki mahdolliset ruudut avattu.
      * 
      * @return totuusarvo onko vielä avaamattomia ruutuja
      */        
     public boolean isUnopenedSquares() {
-        int size = getX() * getY();
+        int size = getSize();
         int unopened = 0;
         for (int i = 0; i < size; i++) {
             if (!board.get(i).isOpen()) {
                 unopened++;
             }
         }
-        if (unopened == getMines()) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     *  Metodi muuttaa pelilaudan tiedot tallennettavaan muotoon. Ei valmis!
-     */
-    public void saveGame() {
-        String s = "";
-       for (int i = 0; i < getSize(); i++) {
-            if ((i) % this.getX() == 0 && i != 0 && i < this.getSize() - 1) {
-               s += "$";
-           }
-            s += board.get(i).toSaveFormat();
-        }
-       Saves.saveGame(s);
-    }
-    
-    @Override
-    public String toString() {
-        String s = "";
-        for (int i = 0; i < this.getSize(); i++) {
-            if ((i) % this.getX() == 0 && i != 0 && i < this.getSize() - 1) {
-               s = s + "\n";
-           }
-            s = s + board.get(i).toString();
-        }
-       return s;
+        return unopened != getMines();
     }
 }

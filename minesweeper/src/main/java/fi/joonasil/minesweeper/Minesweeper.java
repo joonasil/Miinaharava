@@ -1,5 +1,5 @@
 package fi.joonasil.minesweeper;
-import fi.joonasil.minesweeper.gui.menus.GameScreen;
+import fi.joonasil.minesweeper.gui.GameScreen;
 import fi.joonasil.minesweeper.other.MineFactory;
 import javafx.application.*;
 import static javafx.application.Application.launch;
@@ -29,6 +29,7 @@ public class Minesweeper extends Application {
         MineFactory.getSettings();
         MineFactory.getBoard();
         window.setScene(MineFactory.getScreen().getScene());
+        window.setResizable(false);
         window.show();
     }
     
@@ -40,7 +41,7 @@ public class Minesweeper extends Application {
     }
     
     /**
-     * Asettaa ohjelman näkymäksi uuden Scene olion
+     * Asettaa ohjelman näkymäksi uuden Scene olion.
      * @param scene Uusi näkymä
      */
     public static void setScene(Scene scene) {

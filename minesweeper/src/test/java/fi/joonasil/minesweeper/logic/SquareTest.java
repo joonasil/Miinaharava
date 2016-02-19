@@ -82,22 +82,14 @@ public class SquareTest {
     
     @Test
     public void toStringUnopenedNumber(){
-        square.setAdjacentMines(5);
         assertEquals("0", square.toString());
     }
     
     @Test
-    public void toStringOpenedNumber(){
-         square.setAdjacentMines(5);
-         square.open();
+    public void toStringNumber(){
+        square.setAdjacentMines(5);
+        square.open();
         assertEquals("5", square.toString());
-    }
-    
-    @Test
-    public void toStringOpenedNumber8(){
-         square.setAdjacentMines(8);
-         square.open();
-        assertEquals("8", square.toString());
     }
     
     @Test
@@ -111,14 +103,7 @@ public class SquareTest {
         square.setQuestionM();
         assertEquals("?", square.toString());
     }
-    
-    @Test
-    public void setAdjacentMinesTo0(){
-        Square sq = new Square(5);
-        sq.setAdjacentMines(0);
-        assertEquals(5, sq.getAdjacentMines());
-    }
-    
+      
     @Test
     public void setAdjacentMinesTo8(){
         square.setAdjacentMines(8);
@@ -149,26 +134,26 @@ public class SquareTest {
     }
     
     @Test
-    public void setMarkerToEmpty(){
+    public void setMarkerToEmpty() {
         square.setEmpty();
         assertEquals(Marker.EMPTY, square.getMarker());
     }
-//    
-//    @Test
-//    public void setMine(){
-//        square.setMine();
-//        assertEquals(true, square.isMine());
-//    }
-//    
-//    @Test
-//    public void setToMine(){
-//        square.setMine(true);
-//        assertEquals(true, square.isMine());
-//    }
-//    
-//    @Test
-//    public void setToNotMine(){
-//        square.setMine(false);
-//        assertEquals(false, square.isMine());
-//    }
+    
+    @Test
+    public void saveFormatTest() {
+        assertEquals("0000|", square.toSaveFormat());
+    }
+    
+    @Test
+    public void flagToSaveFormatTest() {
+        square.setFlag();
+        assertEquals("0001|", square.toSaveFormat());
+    }
+    
+    @Test
+    public void questionmarkToSaveFormatTest() {
+        square.setQuestionM();
+        assertEquals("0002|", square.toSaveFormat());
+    }
+
 }
