@@ -17,7 +17,7 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 - Tallenna Peli
 - Katso huipputuloksia
 
-##### Luokkakaavio
+#### Luokkakaavio
 ###### versio 1
 ![Luokkakaavio](/dokumentointi/luokkakaavio.png)
 
@@ -27,5 +27,7 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 ###### versio 3 (12.02.2016)
 ![Luokkakaavio versio 3](/dokumentointi/luokkakaavio3.png)
 
-##### Sekvenssikaaviot
+#### Sekvenssikaaviot
 ![Sekvenssikaavio tapahtumasta pelaaja painaa avaamatonta ruutua vasemmalla hiiren painikkeella](/dokumentointi/sekvenssikaavio1.png)
+
+![Sekvenssikaavio tapahtumasta pelaaja painaa avaamatonta ruutua oikealla hiiren painikkeella](/dokumentointi/sekvenssikaavio2.png)
