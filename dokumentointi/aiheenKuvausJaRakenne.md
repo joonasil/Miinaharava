@@ -28,4 +28,4 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 ![Luokkakaavio versio 3](/dokumentointi/luokkakaavio3.png)
 
 ##### Sekvenssikaaviot
-
+![Sekvenssikaavio tapahtumasta pelaaja painaa avaamatonta ruutua vasemmalla hiiren painikkeella](/dokumentointi/sekvenssikaavio1.png)
