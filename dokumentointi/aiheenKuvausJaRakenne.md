@@ -26,3 +26,6 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 
 ###### versio 3 (12.02.2016)
 ![Luokkakaavio versio 3](/dokumentointi/luokkakaavio3.png)
+
+##### Sekvenssikaaviot
+
