@@ -55,10 +55,7 @@ public class SquareGui implements EventHandler<MouseEvent> {
     }
     
     public void setMarker(){
-        if (MineFactory.getBoard().getSquares().get(this.getIndex()).isOpen()) {
-            return;
-        }
-        Marker mark = MineFactory.getBoard().getSquares().get(this.getIndex()).getMarker();
+        Marker mark = MineFactory.getBoard().changeMarker(this.getIndex());
         if (mark == Marker.FLAG) {
             this.setCurrent(10);
             MineFactory.getScreen().setMinesLeft(Integer.toString(MineFactory.getBoard().getMinesLeft()));
@@ -78,7 +75,6 @@ public class SquareGui implements EventHandler<MouseEvent> {
         }
         if(event.getX() > 0 && event.getX() < 32 && event.getY() > 0 && event.getY() < 32) {
             if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
-                MineFactory.getBoard().changeMarker(this.getIndex());
                 setMarker();
             }
         } else {
