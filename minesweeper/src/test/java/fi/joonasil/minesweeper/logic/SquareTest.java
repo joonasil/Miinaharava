@@ -58,31 +58,31 @@ public class SquareTest {
     
     @Test
     public void toStringUnopened(){
-        assertEquals("0", square.toString());
+        assertEquals("12", square.toString());
     }
     
     @Test
     public void toStringUnopenedMine(){
         Square mine = new Square(true);
-        assertEquals("0",mine.toString());
+        assertEquals("12",mine.toString());
     }
     
     @Test
     public void toStringOpened(){
         square.open();
-        assertEquals("x",square.toString());
+        assertEquals("0",square.toString());
     }
     
     @Test
     public void toStringOpenedMine(){
         Square mine = new Square(true);
         mine.open();
-        assertEquals("#",mine.toString());
+        assertEquals("9",mine.toString());
     }
     
     @Test
     public void toStringUnopenedNumber(){
-        assertEquals("0", square.toString());
+        assertEquals("12", square.toString());
     }
     
     @Test
