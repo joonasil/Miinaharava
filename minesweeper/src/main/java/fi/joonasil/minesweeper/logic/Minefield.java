@@ -148,8 +148,10 @@ public class Minefield {
      * Merkitsee ruudun "lipuksi" tai "kysymysmerkiksi".
      * 
      * @param index Indeksi, jota on painettu oikealla hiiren painikkeella.
+     * 
+     * @return Marker enum, joka kertoo onko ruutua painettu oikealla hiiren painikkeella ja kuinka monesti.
      */
-    public void changeMarker(int index) {
+    public Marker changeMarker(int index) {
         Square current = board.get(index);
         if (current.getMarker() == Marker.EMPTY && !current.isOpen()) {
             current.setFlag();
@@ -160,6 +162,7 @@ public class Minefield {
         } else {
             current.setEmpty();
         }
+        return current.getMarker();
     }
 
     public int getMines() {
