@@ -1,7 +1,7 @@
 package fi.joonasil.minesweeper.gui.square;
 
 import fi.joonasil.minesweeper.logic.Marker;
-import fi.joonasil.minesweeper.other.MineFactory;
+import fi.joonasil.minesweeper.other.Minesweeper;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javafx.event.EventHandler;
@@ -42,8 +42,8 @@ public class SquareGui implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        MineFactory.getTimer().play();
-        if (MineFactory.getBoard().isGameOver()) {
+        Minesweeper.getTimer().play();
+        if (Minesweeper.getBoard().isGameOver()) {
             return;
         }
         if (event.getButton().equals(MouseButton.PRIMARY)) {
@@ -55,14 +55,14 @@ public class SquareGui implements EventHandler<MouseEvent> {
     }
     
     public void setMarker(){
-        Marker mark = MineFactory.getBoard().changeMarker(this.getIndex());
+        Marker mark = Minesweeper.getBoard().changeMarker(this.getIndex());
         if (mark == Marker.FLAG) {
             this.setCurrent(10);
-            MineFactory.getScreen().setMinesLeft(Integer.toString(MineFactory.getBoard().getMinesLeft()));
+            Minesweeper.getScreen().setMinesLeft(Integer.toString(Minesweeper.getBoard().getMinesLeft()));
         }
         if (mark == Marker.QUESTIONMARK) {
             this.setCurrent(11);
-            MineFactory.getScreen().setMinesLeft(Integer.toString(MineFactory.getBoard().getMinesLeft()));
+            Minesweeper.getScreen().setMinesLeft(Integer.toString(Minesweeper.getBoard().getMinesLeft()));
         }
         if (mark == Marker.EMPTY) {
             this.setCurrent(12);
@@ -70,7 +70,7 @@ public class SquareGui implements EventHandler<MouseEvent> {
     }
     
     public void rightClick(MouseEvent event){
-        if (MineFactory.getBoard().getSquares().get(this.getIndex()).isOpen()) {
+        if (Minesweeper.getBoard().getSquares().get(this.getIndex()).isOpen()) {
             return;
         }
         if(event.getX() > 0 && event.getX() < 32 && event.getY() > 0 && event.getY() < 32) {
@@ -83,32 +83,33 @@ public class SquareGui implements EventHandler<MouseEvent> {
     }
     
     public void leftClick(MouseEvent event){
-        if (MineFactory.getBoard().getSquares().get(this.getIndex()).getMarker() != Marker.EMPTY) {
+        if (Minesweeper.getBoard().getSquares().get(this.getIndex()).getMarker() != Marker.EMPTY) {
             return;
         }
         if (event.getX() > 0 && event.getX() < 32 && event.getY() > 0 && event.getY() < 32) {
             if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
-                HashSet<Integer> opened = MineFactory.getBoard().openSquares(this.getIndex());
-                if (opened.isEmpty() && MineFactory.getBoard().getSquares().get(this.getIndex()).isMine()) {
-                    MineFactory.getScreen().setImage(this.getIndex(), 9);
+                HashSet<Integer> opened = Minesweeper.getBoard().openSquares(this.getIndex());
+                if (opened.isEmpty() && Minesweeper.getBoard().getSquares().get(this.getIndex()).isMine()) {
+                    Minesweeper.getScreen().setImage(this.getIndex(), 9);
+                    Minesweeper.getScreen().gameOver();
                 }
                 opened.stream().forEach(this::setOpen);
             }
             if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
-                if (!MineFactory.getBoard().getSquares().get(this.getIndex()).isOpen()) {
+                if (!Minesweeper.getBoard().getSquares().get(this.getIndex()).isOpen()) {
                     this.setCurrent(0);
                 }
             }
         } else {
             setOpen(this.getIndex());
         }
-        if (!MineFactory.getBoard().isUnopenedSquares()) {
+        if (!Minesweeper.getBoard().isUnopenedSquares()) {
             System.out.println("Game Won!");
-            MineFactory.getTimer().stop();
+            Minesweeper.getTimer().stop();
         }
     }
     
     public void setOpen(int i) {
-        MineFactory.getScreen().setImage(i, Integer.parseInt(MineFactory.getBoard().getSquares().get(i).toString()));
+        Minesweeper.getScreen().setImage(i, Integer.parseInt(Minesweeper.getBoard().getSquares().get(i).toString()));
     }
 }

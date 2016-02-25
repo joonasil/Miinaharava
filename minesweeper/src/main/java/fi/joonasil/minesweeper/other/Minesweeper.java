@@ -10,7 +10,7 @@ import fi.joonasil.minesweeper.logic.Minefield;
  * 
  * @author Joonas Ilvonen
  */
-public class MineFactory {
+public class Minesweeper {
     
     private static GameScreen screen;
     private static Minefield board;
@@ -18,15 +18,15 @@ public class MineFactory {
     private static Timer timer;
     
     public static void setScreen(GameScreen screen) {
-        MineFactory.screen = screen;
+        Minesweeper.screen = screen;
     }
     
     public static void setBoard(Minefield board) {
-        MineFactory.board = board; 
+        Minesweeper.board = board; 
     }
 
     public static void setSettings(GameSettings settings) {
-        MineFactory.settings = settings;
+        Minesweeper.settings = settings;
     }
     
     /**

@@ -116,12 +116,13 @@ public class Minefield {
                     break;
                 }
             }
+            firstOpened = true;
+            current.setIsMine(false);
             countAdjacentMines();
         }
         current = board.get(index);
         if (current.isMine()) {
             gameOver = true;
-            MineFactory.getScreen().gameOver();
             return openedSquares;
         }
         if (current.getMarker() != Marker.EMPTY || current.isOpen()) {

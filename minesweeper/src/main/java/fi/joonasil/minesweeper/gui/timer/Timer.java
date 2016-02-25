@@ -1,6 +1,6 @@
 package fi.joonasil.minesweeper.gui.timer;
 
-import fi.joonasil.minesweeper.other.MineFactory;
+import fi.joonasil.minesweeper.other.Minesweeper;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,7 +18,7 @@ public class Timer {
         hour = 0;
         timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
                     increase();
-                    MineFactory.getScreen().setTime(toString());
+                    Minesweeper.getScreen().setTime(toString());
                 }));
         timer.setCycleCount(Timeline.INDEFINITE);
     }

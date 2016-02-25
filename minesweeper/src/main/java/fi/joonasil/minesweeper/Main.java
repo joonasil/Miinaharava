@@ -1,16 +1,15 @@
 package fi.joonasil.minesweeper;
-import fi.joonasil.minesweeper.gui.GameScreen;
-import fi.joonasil.minesweeper.other.MineFactory;
+import fi.joonasil.minesweeper.other.Minesweeper;
 import javafx.application.*;
-import static javafx.application.Application.launch;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static javafx.application.Application.launch;
 
 /**
  * Ohjelman Main luokka.
  * @author Joonas Ilvonen
  */
-public class Minesweeper extends Application {
+public class Main extends Application {
     
     private static Stage window;
     
@@ -26,9 +25,9 @@ public class Minesweeper extends Application {
     public void start(Stage primaryStage) {
         window = primaryStage;
         primaryStage.setTitle("Minesweeper");
-        MineFactory.getSettings();
-        MineFactory.getBoard();
-        window.setScene(MineFactory.getScreen().getScene());
+        Minesweeper.getSettings();
+        Minesweeper.getBoard();
+        window.setScene(Minesweeper.getScreen().getScene());
         window.setResizable(false);
         window.show();
     }

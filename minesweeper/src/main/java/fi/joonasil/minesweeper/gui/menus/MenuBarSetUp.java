@@ -1,9 +1,9 @@
 package fi.joonasil.minesweeper.gui.menus;
 
-import fi.joonasil.minesweeper.Minesweeper;
+import fi.joonasil.minesweeper.Main;
 import fi.joonasil.minesweeper.gui.menus.MenuHandler;
 import fi.joonasil.minesweeper.gui.timer.Timer;
-import fi.joonasil.minesweeper.other.MineFactory;
+import fi.joonasil.minesweeper.other.Minesweeper;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -41,7 +41,7 @@ public class MenuBarSetUp {
         newGame.setOnAction(e -> MenuHandler.handeNewGame());
         loadGame.setOnAction(e -> System.out.println("To be implemented"));
         saveGame.setOnAction(e -> System.out.println("To be implemented"));
-        quitGame.setOnAction(e -> Minesweeper.quitGame());
+        quitGame.setOnAction(e -> Main.quitGame());
         
         gameMenu.getItems().addAll(newGame, loadGame, saveGame, quitGame);
        
@@ -58,7 +58,7 @@ public class MenuBarSetUp {
         easy.setToggleGroup(dif);
         medium.setToggleGroup(dif);
         hard.setToggleGroup(dif);
-        switch(MineFactory.getSettings().getDifficulty()){
+        switch(Minesweeper.getSettings().getDifficulty()){
             case 0:
                 dif.selectToggle(easy);
                 break;
@@ -73,9 +73,9 @@ public class MenuBarSetUp {
         }
         
         //Difficulty menu actions
-        easy.setOnAction(e -> MineFactory.getSettings().setEasy());
-        medium.setOnAction(e -> MineFactory.getSettings().setMedium());
-        hard.setOnAction(e -> MineFactory.getSettings().setHard());
+        easy.setOnAction(e -> Minesweeper.getSettings().setEasy());
+        medium.setOnAction(e -> Minesweeper.getSettings().setMedium());
+        hard.setOnAction(e -> Minesweeper.getSettings().setHard());
         
         diffMenu.getItems().addAll(easy,medium,hard);
         

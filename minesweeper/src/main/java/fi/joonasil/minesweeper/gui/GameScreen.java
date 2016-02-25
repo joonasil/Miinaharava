@@ -2,12 +2,12 @@
 package fi.joonasil.minesweeper.gui;
 
 import fi.joonasil.minesweeper.gui.menus.MenuBarSetUp;
-import fi.joonasil.minesweeper.Minesweeper;
+import fi.joonasil.minesweeper.Main;
 import fi.joonasil.minesweeper.gui.square.SquareGui;
 import fi.joonasil.minesweeper.gui.timer.Timer;
 import fi.joonasil.minesweeper.logic.Minefield;
 import fi.joonasil.minesweeper.other.ImageLoader;
-import fi.joonasil.minesweeper.other.MineFactory;
+import fi.joonasil.minesweeper.other.Minesweeper;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -48,8 +48,8 @@ public final class GameScreen {
      */
     public GameScreen(int x, int y) {
         VBox layout = new VBox();
-        minesLeft = new Label(Integer.toString(MineFactory.getBoard().getMinesLeft()));
-        time = new Label(MineFactory.getTimer().toString());
+        minesLeft = new Label(Integer.toString(Minesweeper.getBoard().getMinesLeft()));
+        time = new Label(Minesweeper.getTimer().toString());
         
         layout.getChildren().addAll(MenuBarSetUp.setMenus(), setInfoBar(minesLeft, time), constructBoard(x, y));
 

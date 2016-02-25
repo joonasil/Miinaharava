@@ -110,8 +110,8 @@ public class MinefieldTest {
     public void changeMarkerThrice(){
         field.changeMarker(0);
         field.changeMarker(0);
-        field.changeMarker(0);
-        assertEquals(Marker.EMPTY, field.getSquares().get(0).getMarker());
+        Marker mark = field.changeMarker(0);
+        assertEquals(Marker.EMPTY, mark);
     }
     
     @Test
@@ -164,20 +164,100 @@ public class MinefieldTest {
     
     @Test
     public void testOpenMultipleSquares() {
-        int i;
         HashSet<Integer> opened = new HashSet<>();
-        for(i = 0; i < field.getSize();){
-            if(field.getSquares().get(i).getAdjacentMines() == 0 && !field.getSquares().get(i).isMine() && i < 9) {
+        for(int i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).getAdjacentMines() == 0 && !field.getSquares().get(i).isMine()) {
                 opened = field.openSquares(i);
                 break;
             }
             i++;
         }
         boolean answer = false;
-        if(opened.size() >= 9) {
+        if(opened.size() >= 2) {
             answer = true;
         }
         assertEquals(true, answer);
     }
     
+    @Test
+    public void boardHasRightAmountOfSquares() {
+        assertEquals(81, field.getSquares().size());
+    }
+    
+     @Test
+    public void testOpenMine() {
+        for(int i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).isMine()) {
+                field.openSquares(i);
+                break;
+            }
+            i++;
+        }
+        for(int i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).isMine()) {
+                field.openSquares(i);
+                break;
+            }
+            i++;
+        }
+        assertEquals(true, field.isGameOver());
+    }
+    
+    @Test
+    public void firstOpenedIsMine() {
+        int i;
+        for(i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).isMine()) {
+                field.openSquares(i);
+                break;
+            }
+            i++;
+        }
+        assertEquals(false, field.getSquares().get(i).isMine());
+    }
+    
+    @Test
+    public void firstOpenedIsMineMovesMineToRightPlace() {
+        int i;
+        for(i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).isMine()) {
+                field.openSquares(i);
+                break;
+            }
+            i++;
+        }
+        if(i > 0) {
+            assertEquals(true, field.getSquares().get(0).isMine());
+        } else {
+            assertEquals(true, field.getSquares().get(1).isMine());
+        }
+    }
+    
+    @Test
+    public void testOpenSquaresActuallyOpenSquares() {
+        int i;
+        HashSet<Integer> opened = new HashSet<>();
+        for(i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).getAdjacentMines() != 0 && !field.getSquares().get(i).isMine()) {
+                opened = field.openSquares(i);
+                break;
+            }
+            i++;
+        }
+        assertEquals(true, field.getSquares().get(i).isOpen());
+    }
+    
+    @Test
+    public void testOpenMultipleSquaresActuallyOpen() {
+        HashSet<Integer> opened = new HashSet<>();
+        int i;
+        for(i = 0; i < field.getSize();){
+            if(field.getSquares().get(i).getAdjacentMines() == 0 && !field.getSquares().get(i).isMine() && ((i+1)%9 != 0)) {
+                opened = field.openSquares(i);
+                break;
+            }
+            i++;
+        }
+        assertEquals(true, field.getSquares().get(i+1).isOpen());
+    }
 }

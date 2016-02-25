@@ -1,9 +1,9 @@
 package fi.joonasil.minesweeper.gui.menus;
 
-import fi.joonasil.minesweeper.Minesweeper;
+import fi.joonasil.minesweeper.Main;
 import fi.joonasil.minesweeper.gui.GameScreen;
 import fi.joonasil.minesweeper.logic.Minefield;
-import fi.joonasil.minesweeper.other.MineFactory;
+import fi.joonasil.minesweeper.other.Minesweeper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -23,16 +23,16 @@ public class MenuHandler implements EventHandler<ActionEvent> {
      * Metodi hoitaa uusi peli- painikkeen toiminnan.
      */
     public static void handeNewGame() {
-        int x = MineFactory.getSettings().getX();
-        int y = MineFactory.getSettings().getY();
-        int mines = MineFactory.getSettings().getMines();
-        MineFactory.getTimer().reset();
+        int x = Minesweeper.getSettings().getX();
+        int y = Minesweeper.getSettings().getY();
+        int mines = Minesweeper.getSettings().getMines();
+        Minesweeper.getTimer().reset();
         Minefield newField = new Minefield(x, y, mines);
         GameScreen newScreen =  new GameScreen(x, y);
-        MineFactory.setBoard(newField);
-        MineFactory.setScreen(newScreen);
-        Minesweeper.setScene(MineFactory.getScreen().getScene());
-        MineFactory.getScreen().setMinesLeft(Integer.toString(MineFactory.getBoard().getMinesLeft()));
+        Minesweeper.setBoard(newField);
+        Minesweeper.setScreen(newScreen);
+        Main.setScene(Minesweeper.getScreen().getScene());
+        Minesweeper.getScreen().setMinesLeft(Integer.toString(Minesweeper.getBoard().getMinesLeft()));
         
     }
 

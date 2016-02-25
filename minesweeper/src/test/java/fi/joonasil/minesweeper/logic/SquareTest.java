@@ -155,5 +155,12 @@ public class SquareTest {
         square.setQuestionM();
         assertEquals("0002|", square.toSaveFormat());
     }
+    
+    @Test
+    public void setIsMine() {
+        square.setIsMine(true);
+        square.setIsMine(false);
+        assertEquals(false, square.isMine());
+    }
 
 }
