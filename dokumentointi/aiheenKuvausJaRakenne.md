@@ -31,3 +31,10 @@ voi tallentaa ja jatkaa pelaamista myöhemmin.
 ![Sekvenssikaavio tapahtumasta pelaaja painaa avaamatonta ruutua vasemmalla hiiren painikkeella](/dokumentointi/sekvenssikaavio1.png)
 
 ![Sekvenssikaavio tapahtumasta pelaaja painaa avaamatonta ruutua oikealla hiiren painikkeella](/dokumentointi/sekvenssikaavio2.png)
+
+#Rakenne
+Ohjelman pääluokka kutsuu staattista luokkaa Minesweeper, joka luo oliot pelin logiikalle: Minefield, graafiselle käyttöliittymälle: GameScreen, asetuksille: GameSettings ja pelikellolle: Timer. Pelin eri osat käyttävät tätä staattista luokkaa kommunikoimiseen esim. käyttöliittymä hakee tietoa pelilogiikalta kutsumalla Minesweeper luokan metodia getBoard() kuten yllä sekvenssikaaviossa on kuvattu.
+
+Pelilogiikan luokka Minefield luo peliruudun listana Square tyyppisiä oloita, jotka sisältävät tiedon ruudusta kuten onko ruutu miina, onko ruutua avattu ja kuinka monta miinaa ruuduissa on. Marker enumia käytetään pitämään kirjaa siitä onko ruutua painettu oikealla hiiren painikkeella.
+
+Käyttöliittymän luokka GameScreen luo vastaavasti listan SquareGui tyyppisiä oliota, jotka vastaavat peliruutujen piirtämisestä ja peliruudun toimintojen hoitamisesta (vasen ja oikea hiiren painallus). GameScreen olion luomisen yhteydessä käytetään ImageLoader luokkaa lataamaan pelin tarvitsemat grafiikat resursseista.
