@@ -22,7 +22,7 @@ public class Score {
     }
     
     public String getHighScore() {
-        String out = name + "|" + time;
+        String out = name  + time;
         return out;
     }
 }

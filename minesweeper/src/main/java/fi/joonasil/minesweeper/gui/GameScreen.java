@@ -2,28 +2,17 @@
 package fi.joonasil.minesweeper.gui;
 
 import fi.joonasil.minesweeper.gui.menus.MenuBarSetUp;
-import fi.joonasil.minesweeper.Main;
 import fi.joonasil.minesweeper.gui.square.SquareGui;
-import fi.joonasil.minesweeper.gui.timer.Timer;
-import fi.joonasil.minesweeper.logic.Minefield;
 import fi.joonasil.minesweeper.other.ImageLoader;
 import fi.joonasil.minesweeper.other.Minesweeper;
 import java.util.ArrayList;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 
 /**
