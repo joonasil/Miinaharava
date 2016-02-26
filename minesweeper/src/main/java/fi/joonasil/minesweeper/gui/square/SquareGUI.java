@@ -42,10 +42,10 @@ public class SquareGui implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        Minesweeper.getTimer().play();
-        if (Minesweeper.getBoard().isGameOver()) {
+        if (Minesweeper.getBoard().isGameOver() || !Minesweeper.getBoard().isUnopenedSquares()) {
             return;
         }
+        Minesweeper.getTimer().play();
         if (event.getButton().equals(MouseButton.PRIMARY)) {
             leftClick(event);
         }

@@ -19,6 +19,7 @@ public class Saves {
      */
     public static void saveGame(String data) {
         Path filePath = Paths.get("saves/save1.txt");
+        
         Saves.save.addAll(Arrays.asList(data.split("\\n")));   
         if (Files.exists(filePath)) {
             try {
