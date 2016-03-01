@@ -1,5 +1,7 @@
 package fi.joonasil.minesweeper.gui.square;
 
+import fi.joonasil.minesweeper.gui.menus.HighScoreGui;
+import fi.joonasil.minesweeper.gui.menus.PromtWindow;
 import fi.joonasil.minesweeper.logic.Marker;
 import fi.joonasil.minesweeper.other.Minesweeper;
 import java.util.ArrayList;
@@ -104,8 +106,21 @@ public class SquareGui implements EventHandler<MouseEvent> {
             setOpen(this.getIndex());
         }
         if (!Minesweeper.getBoard().isUnopenedSquares()) {
-            System.out.println("Game Won!");
             Minesweeper.getTimer().stop();
+            int difficulty = 0;
+            int x = Minesweeper.getBoard().getMines();
+            String message = "You have beaten the game on easy difficulty.\nPlease Enter your name.";
+            if (x == 40) {
+                difficulty  = 1;
+                message = "You have beaten the game on medium difficulty.\nPlease Enter your name.";
+            } else if (x == 99) {
+                difficulty = 2;
+                message = "You have beaten the game on hard difficulty.\nPlease Enter your name.";
+            }
+            String s = PromtWindow.gameWon("Congratulations", message);
+            Minesweeper.getHighScore().load(difficulty);
+            Minesweeper.getHighScore().add(s, Minesweeper.getTimer().toString(), difficulty);
+            Minesweeper.getHighScore().draw();
         }
     }
     

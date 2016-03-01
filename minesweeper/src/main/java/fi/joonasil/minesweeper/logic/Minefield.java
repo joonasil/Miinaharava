@@ -116,10 +116,10 @@ public class Minefield {
                     break;
                 }
             }
-            firstOpened = true;
             current.setIsMine(false);
             countAdjacentMines();
         }
+        firstOpened = true;
         current = board.get(index);
         if (current.isMine()) {
             gameOver = true;

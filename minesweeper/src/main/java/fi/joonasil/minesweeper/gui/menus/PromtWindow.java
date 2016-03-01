@@ -1,4 +1,5 @@
 package fi.joonasil.minesweeper.gui.menus;
+import javafx.event.ActionEvent;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
@@ -11,44 +12,42 @@ import javafx.geometry.*;
  * @author Joonas Ilvonen
  */
 public class PromtWindow {
-    private static boolean answer;
-    
+    private static final TextField input = new TextField();
+    private static String name;
     /**
-     * Metodi luo ponnahdusikkunan ja palauttaa käyttäjän valitseman vastauksen.
+     * Metodi luo ponnahdusikkunan ja palauttaa käyttäjän valitseman nimimerkin.
      * 
      * @param title Ponnahdusikkunan otsikko
      * @param message Ponnahdusikkunan viesti
      * 
-     * @return käyttäjän valinta totuusarvona
+     * @return käyttäjän valinta 
      */
-    public static boolean display(String title, String message) {
+    public static String gameWon(String title, String message) {
+        
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
+        window.setOnCloseRequest(e -> e.consume());
         window.setTitle(title);
-        window.setMinWidth(250);
+        window.setMinWidth(270);
         Label label = new Label();
         label.setText(message);
+        input.setPromptText("Name");
+        Button confirm = new Button("Confirm");
 
-        Button yesButton = new Button("Yes");
-        Button noButton = new Button("No");
-
-        yesButton.setOnAction(e -> {
-            answer = true;
-            window.close();
-        });
-        noButton.setOnAction(e -> {
-            answer = false;
-            window.close();
+        confirm.setOnAction((ActionEvent e) -> {
+            name = input.getText();
+            if(name.length() > 0) {
+                window.close();
+            }     
         });
 
         VBox layout = new VBox(10);
 
-        layout.getChildren().addAll(label, yesButton, noButton);
+        layout.getChildren().addAll(label, input, confirm);
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
-
-        return answer;
+        return name;
     }
 }

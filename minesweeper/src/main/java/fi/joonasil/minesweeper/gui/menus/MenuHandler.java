@@ -35,5 +35,11 @@ public class MenuHandler implements EventHandler<ActionEvent> {
         Minesweeper.getScreen().setMinesLeft(Integer.toString(Minesweeper.getBoard().getMinesLeft()));
         
     }
+    
+    
+    public static void handleHighScore(int difficulty) {
+        Minesweeper.getHighScore().load(difficulty);
+        Minesweeper.getHighScore().draw();
+    }
 
 }

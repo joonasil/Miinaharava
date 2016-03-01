@@ -33,17 +33,13 @@ public class MenuBarSetUp {
         
         //Game menu items
         MenuItem newGame = new MenuItem("New Game");
-        MenuItem loadGame = new MenuItem("Load Game");
-        MenuItem saveGame = new MenuItem("Save Game");
         MenuItem quitGame = new MenuItem("Quit Game");
         
         //Game menu actions
         newGame.setOnAction(e -> MenuHandler.handeNewGame());
-        loadGame.setOnAction(e -> System.out.println("To be implemented"));
-        saveGame.setOnAction(e -> System.out.println("To be implemented"));
         quitGame.setOnAction(e -> Main.quitGame());
         
-        gameMenu.getItems().addAll(newGame, loadGame, saveGame, quitGame);
+        gameMenu.getItems().addAll(newGame, quitGame);
        
         //Difficulty menu
         Menu diffMenu = new Menu("Difficulty");
@@ -79,7 +75,22 @@ public class MenuBarSetUp {
         
         diffMenu.getItems().addAll(easy,medium,hard);
         
-        menuBar.getMenus().addAll(gameMenu, diffMenu);
+        //High Score menu
+        Menu hsMenu = new Menu("High Scores");
+        
+        //High Score Menu items
+        MenuItem easyScore = new MenuItem("Easy");
+        MenuItem mediumScore = new MenuItem("Medium");
+        MenuItem hardScore = new MenuItem("Hard");
+        
+        //High Score Menu actions
+        easyScore.setOnAction(e -> MenuHandler.handleHighScore(0));
+        mediumScore.setOnAction(e -> MenuHandler.handleHighScore(1));
+        hardScore.setOnAction(e -> MenuHandler.handleHighScore(2));
+        
+        hsMenu.getItems().addAll(easyScore, mediumScore, hardScore);
+        
+        menuBar.getMenus().addAll(gameMenu, diffMenu, hsMenu);
         return menuBar;
     }
 }

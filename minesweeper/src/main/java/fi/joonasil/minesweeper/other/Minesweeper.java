@@ -2,6 +2,7 @@ package fi.joonasil.minesweeper.other;
 
 import fi.joonasil.minesweeper.GameSettings;
 import fi.joonasil.minesweeper.gui.GameScreen;
+import fi.joonasil.minesweeper.gui.menus.HighScoreGui;
 import fi.joonasil.minesweeper.gui.timer.Timer;
 import fi.joonasil.minesweeper.logic.Minefield;
 
@@ -16,6 +17,14 @@ public class Minesweeper {
     private static Minefield board;
     private static GameSettings settings;   
     private static Timer timer;
+    private static HighScoreGui highScore;
+
+    public static HighScoreGui getHighScore() {
+        if (highScore == null) {
+            highScore = new HighScoreGui();
+        }
+        return highScore;
+    }
     
     public static void setScreen(GameScreen screen) {
         Minesweeper.screen = screen;
