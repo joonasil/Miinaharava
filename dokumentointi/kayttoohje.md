@@ -16,12 +16,15 @@ avaamalla kaikki ruudut, joissa ei ole miinaa.
 kysymysmerkkiä hiiren oikealla painikkeella.
 
 #### Valikot
+Valikkoja käytetään vasemmalla hiiren painikkeella.
 - Game
   - New Game: Aloittaa uuden pelin valitulla vaikeusasteella.
-  - Load Game: Lataa tallennetun pelin. (voi olla että en ehdi implementoida pelin tallennusta)
-  - Save Game: Tallentaa pelin. (voi olla että en ehdi implementoida pelin tallennusta)
   - Quit Game: Sammuttaa sovelluksen.
 - Difficulty
   - Easy: Asettaa pelin vaikeusasteeksi helpon vaikeusasteen. 9x9 ruudukko 10 miinalla.
   - Medium: Asettaa pelin vaikeusasteeksi keskiverron vaikeusasteen. 16x16 ruudukko 40 miinalla.
   - Hard: Asettaa pelin vaikeusasteeksi vaikean vaikeusasteen. 30x16 ruudukko 99 miinalla.
+- High Scores
+  - Easy: Avaa helpon vaikeusasteen huipputulokset
+  - Medium: Avaa keskivaikean vaikeusasteen huipputulokset
+  - Hard: Avaa vaikean vaikeusasteen huipputulokset
