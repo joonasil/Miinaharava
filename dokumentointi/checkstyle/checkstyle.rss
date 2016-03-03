@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2016</copyright>
     <item>
       <title>File: 16,
-             Errors: 15,
+             Errors: 5,
              Warnings: 0,
              Infos: 0
       </title>
@@ -47,20 +47,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#fi.joonasil.minesweeper.other.ImageLoader.java">fi/joonasil/minesweeper/other/ImageLoader.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#fi.joonasil.minesweeper.other.Saves.java">fi/joonasil/minesweeper/other/Saves.java</a>
                 </td>
                 <td>
                   0
@@ -97,7 +83,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
+                  0
                 </td>
               </tr>
                           <tr>
@@ -125,7 +111,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  0
                 </td>
               </tr>
                           <tr>
@@ -228,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.joonasil.minesweeper.logic.Minefield.java">fi/joonasil/minesweeper/logic/Minefield.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.joonasil.minesweeper.gui.menus.HighScoreGui.java">fi/joonasil/minesweeper/gui/menus/HighScoreGui.java</a>
                 </td>
                 <td>
                   0
@@ -238,6 +224,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.joonasil.minesweeper.logic.Minefield.java">fi/joonasil/minesweeper/logic/Minefield.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
               </tr>
                           <tr>

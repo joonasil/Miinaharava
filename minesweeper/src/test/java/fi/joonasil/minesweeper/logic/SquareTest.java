@@ -93,15 +93,15 @@ public class SquareTest {
     }
     
     @Test
-    public void toStirngFlag(){
+    public void toStringFlag(){
         square.setFlag();
-        assertEquals("F", square.toString());
+        assertEquals("10", square.toString());
     }
     
     @Test
-    public void toStirngQuestionmark(){
+    public void toStringQuestionmark(){
         square.setQuestionM();
-        assertEquals("?", square.toString());
+        assertEquals("11", square.toString());
     }
       
     @Test
@@ -137,23 +137,6 @@ public class SquareTest {
     public void setMarkerToEmpty() {
         square.setEmpty();
         assertEquals(Marker.EMPTY, square.getMarker());
-    }
-    
-    @Test
-    public void saveFormatTest() {
-        assertEquals("0000|", square.toSaveFormat());
-    }
-    
-    @Test
-    public void flagToSaveFormatTest() {
-        square.setFlag();
-        assertEquals("0001|", square.toSaveFormat());
-    }
-    
-    @Test
-    public void questionmarkToSaveFormatTest() {
-        square.setQuestionM();
-        assertEquals("0002|", square.toSaveFormat());
     }
     
     @Test

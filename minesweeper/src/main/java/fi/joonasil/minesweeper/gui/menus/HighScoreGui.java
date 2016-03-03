@@ -2,6 +2,7 @@ package fi.joonasil.minesweeper.gui.menus;
 
 import fi.joonasil.minesweeper.highscores.HighScores;
 import fi.joonasil.minesweeper.highscores.Score;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class HighScoreGui {
@@ -26,6 +28,7 @@ public class HighScoreGui {
     
     public HighScoreGui() {    
         window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
         hs = new HighScores();              
     }
     
@@ -83,16 +86,14 @@ public class HighScoreGui {
         VBox layout = new VBox();
         HBox buttons = new HBox();
         
-        Button easyButton = new Button("Easy");
-        easyButton.setOnAction(e -> load(0));
-        
-        Button mediumButton = new Button("Medium");
-        mediumButton.setOnAction(e -> load(1));
-        
-        Button hardButton = new Button("Hard");
-        hardButton.setOnAction(e -> load(2));
-        
+        Button easyButton = new Button("Easy"); 
+        Button mediumButton = new Button("Medium");   
+        Button hardButton = new Button("Hard"); 
         Button closeButton = new Button("Close");
+        
+        easyButton.setOnAction(e -> load(0));
+        mediumButton.setOnAction(e -> load(1));
+        hardButton.setOnAction(e -> load(2));
         closeButton.setOnAction(e -> window.close());
 
         easyButton.setMinWidth(77);

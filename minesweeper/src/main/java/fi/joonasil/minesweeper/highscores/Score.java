@@ -1,18 +1,25 @@
 package fi.joonasil.minesweeper.highscores;
 
 /**
- *
- * @author Joonas
+ *Luokka huipputuloksen tallentamista varten.
+ * 
+ * @author Joonas Ilvonen
  */
-public class Score implements Comparable<Score>{
+public class Score implements Comparable<Score> {
     private String position;
     private String name;
     private String time;
     
+    /**
+     * Konstruktori uuden huipputuloksen luomist avarten.
+     * 
+     * @param name Pelaajan nimi.
+     * @param time Pelin aika.
+     */
     public Score(String name, String time) {
         this.name = name;
         this.time = time;
-        this.position = 0+".";
+        this.position = 0 + ".";
     }
 
     public String getName() {
@@ -28,7 +35,7 @@ public class Score implements Comparable<Score>{
     }
 
     public void setPosition(int position) {
-        this.position = position+".";
+        this.position = position + ".";
     }
 
     public void setName(String name) {

@@ -56,7 +56,7 @@ public class SquareGui implements EventHandler<MouseEvent> {
         }
     }
     
-    public void setMarker(){
+    private void setMarker(){
         Marker mark = Minesweeper.getBoard().changeMarker(this.getIndex());
         if (mark == Marker.FLAG) {
             this.setCurrent(10);
@@ -71,12 +71,12 @@ public class SquareGui implements EventHandler<MouseEvent> {
         }
     }
     
-    public void rightClick(MouseEvent event){
+    private void rightClick(MouseEvent event){
         if (Minesweeper.getBoard().getSquares().get(this.getIndex()).isOpen()) {
             return;
         }
-        if(event.getX() > 0 && event.getX() < 32 && event.getY() > 0 && event.getY() < 32) {
-            if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
+        if (event.getX() > 0 && event.getX() < 32 && event.getY() > 0 && event.getY() < 32) {
+            if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
                 setMarker();
             }
         } else {
@@ -84,7 +84,7 @@ public class SquareGui implements EventHandler<MouseEvent> {
         }
     }
     
-    public void leftClick(MouseEvent event){
+    private void leftClick(MouseEvent event){
         if (Minesweeper.getBoard().getSquares().get(this.getIndex()).getMarker() != Marker.EMPTY) {
             return;
         }
@@ -109,13 +109,13 @@ public class SquareGui implements EventHandler<MouseEvent> {
             Minesweeper.getTimer().stop();
             int difficulty = 0;
             int x = Minesweeper.getBoard().getMines();
-            String message = "You have beaten the game on easy difficulty.\nPlease Enter your name.";
+            String message = "You have beaten the game on easy difficulty.\nPlease enter your name.";
             if (x == 40) {
                 difficulty  = 1;
-                message = "You have beaten the game on medium difficulty.\nPlease Enter your name.";
+                message = "You have beaten the game on medium difficulty.\nPlease enter your name.";
             } else if (x == 99) {
                 difficulty = 2;
-                message = "You have beaten the game on hard difficulty.\nPlease Enter your name.";
+                message = "You have beaten the game on hard difficulty.\nPlease enter your name.";
             }
             String s = PromtWindow.gameWon("Congratulations", message);
             Minesweeper.getHighScore().load(difficulty);
@@ -124,7 +124,7 @@ public class SquareGui implements EventHandler<MouseEvent> {
         }
     }
     
-    public void setOpen(int i) {
+    private void setOpen(int i) {
         Minesweeper.getScreen().setImage(i, Integer.parseInt(Minesweeper.getBoard().getSquares().get(i).toString()));
     }
 }

@@ -18,7 +18,13 @@ public class Minesweeper {
     private static GameSettings settings;   
     private static Timer timer;
     private static HighScoreGui highScore;
-
+    
+    /**
+     * Palauttaa pelin huipputulosten käyttöliittymän olion. Jos oliota ei ole vielä
+     * luotu luo sen.
+     * 
+     * @return Huipputulosten käyttöliittymän olio.
+     */
     public static HighScoreGui getHighScore() {
         if (highScore == null) {
             highScore = new HighScoreGui();

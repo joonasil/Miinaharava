@@ -94,37 +94,12 @@ public class Square {
         marker = Marker.EMPTY;
     }
     
-    /**
-     * Metodi luokan tietojen muuttamiseksi tallennettavaan muotoon.
-     * 
-     * @return luokan tiedot tallennettavassa muodossa.
-     */
-    public String toSaveFormat() {
-        String save = "";
-        save += (this.isOpen() ? "1" : "0");
-        save += (this.isMine() ? "1" : "0");
-        save += this.getAdjacentMines();
-        switch(this.getMarker()) {
-            case EMPTY:
-                save += "0";
-                break;
-            case FLAG:
-                save += "1";
-                break;
-            case QUESTIONMARK:
-                save += "2";
-                break;
-        }     
-        save += "|";
-        return save;
-    }
-    
     @Override
     public String toString() {
         if (marker == Marker.FLAG) {
-            return "F";
+            return "10";
         } else if (marker == Marker.QUESTIONMARK) {
-            return "?";
+            return "11";
         } else if (isOpen && this.isMine()) {
             return "9";
         } else if (isOpen && adjacentMines == 0) {

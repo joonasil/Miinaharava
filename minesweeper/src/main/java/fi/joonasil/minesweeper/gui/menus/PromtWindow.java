@@ -28,7 +28,7 @@ public class PromtWindow {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setOnCloseRequest(e -> e.consume());
         window.setTitle(title);
-        window.setMinWidth(270);
+        window.setMinWidth(275);
         Label label = new Label();
         label.setText(message);
         input.setPromptText("Name");

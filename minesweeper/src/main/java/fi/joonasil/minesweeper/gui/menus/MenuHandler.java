@@ -4,21 +4,14 @@ import fi.joonasil.minesweeper.Main;
 import fi.joonasil.minesweeper.gui.GameScreen;
 import fi.joonasil.minesweeper.logic.Minefield;
 import fi.joonasil.minesweeper.other.Minesweeper;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 /**
  * Luokka menujen tapahtumien hoitamiselle.
  * 
  * @author Joonas
  */
-public class MenuHandler implements EventHandler<ActionEvent> {
+public class MenuHandler {
 
-    @Override
-    public void handle(ActionEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     /**
      * Metodi hoitaa uusi peli- painikkeen toiminnan.
      */
@@ -36,7 +29,11 @@ public class MenuHandler implements EventHandler<ActionEvent> {
         
     }
     
-    
+    /**
+     * Metodi avaa huipputulos ikkunan.
+     * 
+     * @param difficulty Vaikeusaste, jonka huipputulokset avataan.
+     */
     public static void handleHighScore(int difficulty) {
         Minesweeper.getHighScore().load(difficulty);
         Minesweeper.getHighScore().draw();

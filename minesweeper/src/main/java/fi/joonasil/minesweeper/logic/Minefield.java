@@ -135,12 +135,7 @@ public class Minefield {
         }
         ArrayList<Integer> adjacent = adjacentIndexes(index);
         for (Integer list : adjacent) {
-            current = board.get(list);
-            if (current.getAdjacentMines() == 0) {
-                openedSquares.addAll(openSquares(list));
-            }
-            current.open();
-            openedSquares.add(list);  
+            openedSquares.addAll(openSquares(list));   
         }
         return openedSquares;
     }
