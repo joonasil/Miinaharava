@@ -8,13 +8,15 @@
 - 27.01.2016 3h Pelilogiikan muokkausta ja kirjoittamista.
 - 28.01.2016 2h Pelaajan logiikan kirjoittamista.
 - 29.01.2016 3h Junit testien tekoa.
-- 05.02.2016 2h Lisää Junit testejä
-- 09.02.2016 2h JavaFX:n opettelua
-- 10.02.2016 4h GUI:n aloittamista ja JavaFX:n opettelua
-- 11.02.2016 4h GUI:n tekemistä resurssien piirtoa
-- 12.02.2016 4h checkstyle raportin luonti, checkstyle virheiden korjausta, GUI:n tekoa
+- 05.02.2016 2h Lisää Junit testejä.
+- 09.02.2016 2h JavaFX:n opettelua.
+- 10.02.2016 4h GUI:n aloittamista ja JavaFX:n opettelua.
+- 11.02.2016 4h GUI:n tekemistä resurssien piirtoa.
+- 12.02.2016 4h checkstyle raportin luonti, checkstyle virheiden korjausta, GUI:n tekoa.
 - 13.02.2016 5h GUI:n kirjoittamista, luokkien siistimistä, Junit testien kirjoittamista ja siistimistä.
-- 15.02.2016 2h käyttöliittymän viimeistelyä, Pelikellon luominen
-- 19.02.2016 4h checkstyle raportin virheiden korjausta, pelikellon korjausta, sekvenssikaavioiden tekoa, pieniä muokkauksia logiikkaan
-- 25.03.2016 3h Ajettavan jar tiedoston luonti, checkstyle korjauksia, junit testien hiontaa
-- 26.03.2016 3h GUI:n bugien fiksausta, huipputuloksien tallentamisen aloittamista
+- 15.02.2016 2h käyttöliittymän viimeistelyä, Pelikellon luominen.
+- 19.02.2016 4h checkstyle raportin virheiden korjausta, pelikellon korjausta, sekvenssikaavioiden tekoa, pieniä muokkauksia logiikkaan.
+- 25.03.2016 3h Ajettavan jar tiedoston luonti, checkstyle korjauksia, junit testien hiontaa.
+- 26.03.2016 3h GUI:n bugien fiksausta, huipputuloksien tallentamisen aloittamista.
+- 02.03.2016 2h Huipputulosten kirjauksen viimeistelyä.
+- 03.03.2016 3h Buildatun jarin ongelmien korjausta, projektin viimeistelyä.
