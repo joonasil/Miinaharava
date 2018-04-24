@@ -25,10 +25,12 @@ public class ImageLoader {
         images.add(new Image(getClass().getClassLoader().getResource("opened6.png").toString())); 
         images.add(new Image(getClass().getClassLoader().getResource("opened7.png").toString())); 
         images.add(new Image(getClass().getClassLoader().getResource("opened8.png").toString())); 
-        images.add(new Image(getClass().getClassLoader().getResource("openedMine.png").toString())); 
+        images.add(new Image(getClass().getClassLoader().getResource("mineHit.png").toString())); 
         images.add(new Image(getClass().getClassLoader().getResource("flag.png").toString())); 
         images.add(new Image(getClass().getClassLoader().getResource("questionmark.png").toString())); 
-        images.add(new Image(getClass().getClassLoader().getResource("unopenedNew.png").toString())); 
+        images.add(new Image(getClass().getClassLoader().getResource("unopened.png").toString()));
+        images.add(new Image(getClass().getClassLoader().getResource("mine.png").toString()));
+        images.add(new Image(getClass().getClassLoader().getResource("mineWrong.png").toString())); 
     }
   
     /**

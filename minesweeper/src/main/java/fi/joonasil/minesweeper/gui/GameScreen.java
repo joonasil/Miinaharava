@@ -2,7 +2,7 @@
 package fi.joonasil.minesweeper.gui;
 
 import fi.joonasil.minesweeper.gui.menus.MenuBarSetUp;
-import fi.joonasil.minesweeper.gui.square.SquareGui;
+import fi.joonasil.minesweeper.gui.square.SquareGUI;
 import fi.joonasil.minesweeper.other.ImageLoader;
 import fi.joonasil.minesweeper.other.Minesweeper;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 public final class GameScreen {
     
     private final Scene scene;
-    private final ArrayList<SquareGui> squares = new ArrayList<>();
+    private final ArrayList<SquareGUI> squares = new ArrayList<>();
     private final Label minesLeft;
     private final Label time;
     private HBox info;
@@ -80,7 +80,7 @@ public final class GameScreen {
         layout.setMinSize(x * 32, y * 32);
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
-                squares.add(new SquareGui(imgs, i * x + j));
+                squares.add(new SquareGUI(imgs, i * x + j));
                 GridPane.setConstraints(squares.get(i * x + j).getCurrent(), j, i);
                 layout.getChildren().add(squares.get(i * x + j).getCurrent());
             }
